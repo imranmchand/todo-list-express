@@ -14,12 +14,18 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+// delete an item
 async function deleteItem(){
+    // set the item's name to the name of it's text value
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        // make req to server to delete
         const response = await fetch('deleteItem', {
+            // delete request
             method: 'delete',
+            // tells the server the data will be in json
             headers: {'Content-Type': 'application/json'},
+            // converts data to json
             body: JSON.stringify({
               'itemFromJS': itemText
             })
